@@ -4,9 +4,6 @@ server:
 spring:
   application:
     name: flux-export-sample
-  jackson:
-    property-naming-strategy: UPPER_CAMEL_CASE
-
 # FluxExport Config
 flux-export:
   storage:
