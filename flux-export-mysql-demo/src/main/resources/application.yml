@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: flux-export-mysql-demo
+
+  # Database Config
+  datasource:
+    url: jdbc:mysql://localhost:3306/flux-export?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # HikariCP Config
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 300000
+      connection-timeout: 20000
+      max-lifetime: 1200000
+      pool-name: FluxExportDemoHikariCP
+
+# MyBatis-Plus Config
+mybatis-plus:
+  # Entity Package
+  type-aliases-package: com.flux.export.mysql.pojo.entity
+  # Mapper XML Location
+  mapper-locations: classpath*:mapper/**/*.xml
+  # Global Config
+  global-config:
+    db-config:
+      # ID Type: INPUT
+      id-type: INPUT
+      # Logic Delete
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  # Configuration
+  configuration:
+    # Camel Case
+    map-underscore-to-camel-case: true
+    # Logging
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    # Cache
+    cache-enabled: false
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# Logging Config
+logging:
+  level:
+    root: INFO
+    com.flux.export.mysql: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

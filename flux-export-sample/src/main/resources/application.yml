@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: flux-export-sample
+  jackson:
+    property-naming-strategy: UPPER_CAMEL_CASE
+
+# FluxExport Config
+flux-export:
+  storage:
+    local:
+      path: ./exports
+      url-prefix: http://localhost:8080/files/
+
+# Logging Config
+logging:
+  level:
+    com.flux.export: DEBUG
